@@ -14,11 +14,7 @@ img {
 }
 
 :root {
-  --gradient-btn: linear-gradient(
-    to bottom,
-    #00f,
-    black
-  );
+  --gradient-btn: linear-gradient(to bottom, #00f, black);
 }
 
 button {
@@ -28,21 +24,15 @@ button {
 }
 
 body {
-  min-height: 100vh;
-  height: max-content;
-  width: 100%;
-  flex-direction: column;
-}
-
-
-
-body {
   --sb-track-color: #000;
   --sb-thumb-color: var(--gradient-btn);
   --sb-size: 0.7vmax;
-}
 
-/***************************SCROLL***************************/
+  flex-direction: column;
+  height: max-content;
+  min-height: 100vh;
+  width: 100%;
+}
 
 body::-webkit-scrollbar {
   width: var(--sb-size);

@@ -28,7 +28,7 @@
     Timer,
     Vector2,
     Vector3,
-    WebGLRenderer,
+    WebGLRenderer
   } from 'three';
   import GUI from 'lil-gui';
 
@@ -44,7 +44,7 @@
     glow: 0.54,
     colorR: 2.0,
     colorG: 1.0,
-    colorB: 0.0,
+    colorB: 0.0
   };
 
   let isDragging = false;
@@ -69,7 +69,9 @@
     u_scale: { value: state.fractalScale },
     u_distortion: { value: state.distortion },
     u_glow: { value: state.glow },
-    u_colorOffset: { value: new Vector3(state.colorR, state.colorG, state.colorB) },
+    u_colorOffset: {
+      value: new Vector3(state.colorR, state.colorG, state.colorB)
+    }
   };
 
   const fragmentShader = `
@@ -181,7 +183,7 @@
     fragmentShader,
     uniforms,
     depthWrite: false,
-    depthTest: false,
+    depthTest: false
   });
 
   const geometry = new PlaneGeometry(2, 2);
@@ -237,9 +239,18 @@
   const updateColor = () => {
     uniforms.u_colorOffset.value.set(state.colorR, state.colorG, state.colorB);
   };
-  colorFolder.add(state, 'colorR', 0.0, 5.0, 0.1).name('Color Offset R').onChange(updateColor);
-  colorFolder.add(state, 'colorG', 0.0, 5.0, 0.1).name('Color Offset G').onChange(updateColor);
-  colorFolder.add(state, 'colorB', 0.0, 5.0, 0.1).name('Color Offset B').onChange(updateColor);
+  colorFolder
+    .add(state, 'colorR', 0.0, 5.0, 0.1)
+    .name('Color Offset R')
+    .onChange(updateColor);
+  colorFolder
+    .add(state, 'colorG', 0.0, 5.0, 0.1)
+    .name('Color Offset G')
+    .onChange(updateColor);
+  colorFolder
+    .add(state, 'colorB', 0.0, 5.0, 0.1)
+    .name('Color Offset B')
+    .onChange(updateColor);
 
   gui.close();
 
@@ -264,12 +275,15 @@
 
     const deltaMove = {
       x: event.offsetX - previousMousePosition.x,
-      y: event.offsetY - previousMousePosition.y,
+      y: event.offsetY - previousMousePosition.y
     };
 
     targetRotation.x -= deltaMove.x * 0.01;
     targetRotation.y += deltaMove.y * 0.01;
-    targetRotation.y = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, targetRotation.y));
+    targetRotation.y = Math.max(
+      -Math.PI / 2,
+      Math.min(Math.PI / 2, targetRotation.y)
+    );
 
     previousMousePosition = { x: event.offsetX, y: event.offsetY };
   });
